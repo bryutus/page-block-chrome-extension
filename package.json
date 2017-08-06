@@ -1,0 +1,25 @@
+{
+  "name": "return-barren-time",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "npm run copy & npm run build & npm run watch",
+    "copy": "cpx 'src/*.html' -w public/build/ & cpx 'src/css/*.css' -w public/build/css/ & cpx 'src/js/*.js' -w public/build/js/",
+    "build": "riot src/tag public/build/tag",
+    "watch": "npm run watch:tag & npm run watch:other",
+    "watch:tag": "chokidar 'src/tag/**/*.tag' -c 'riot src/tag public/build/tag'",
+    "watch:other": "chokidar 'src/*.html' 'src/css/*.css' 'src/js/*.js' -c 'npm run copy'"
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "riot.js"
+  ],
+  "author": "bryutus",
+  "license": "ISC",
+  "devDependencies": {
+    "riot": "^3.6.0",
+    "cpx": "^1.5.0",
+    "chokidar-cli": "^1.2.0"
+  }
+}
