@@ -1,9 +1,9 @@
 'use strict'
 
-const LOCAL_STORAGE_KEY = 'page-block';
 const URL_SPLIT_PATTERN = /^(?:(https?:)?(?:\/\/(([^\/:]+)(?::([0-9]+))?)))?(\/?[^?#]*)(\??[^?#]*)(#?.*)/i;
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', () => {
+
   Promise.all([
     getCurrentUrl(),
     getLocalStorage()
@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 let getCurrentUrl = () => {
   const p = new Promise((resolve, reject) => {
-    chrome.tabs.getSelected(null, function(tab) {
+    chrome.tabs.getSelected(null, (tab) => {
       resolve(tab.url.match(URL_SPLIT_PATTERN));
     });
   });
@@ -24,7 +24,7 @@ let getCurrentUrl = () => {
 
 let getLocalStorage = () => {
   const p = new Promise((resolve, reject) => {
-    chrome.storage.local.get(LOCAL_STORAGE_KEY, function(val) {
+    chrome.storage.local.get('list', (val) => {
       resolve(val);
     });
   });
