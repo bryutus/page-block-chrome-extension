@@ -34,21 +34,23 @@ let getLocalStorage = () => {
 
 let urlExists = data => {
   const p = new Promise((resolve, reject) => {
-    let currentUrl = data[0][0];
-    let currentDomain = data[0][3];
-    let localStorage = data[1][LOCAL_STORAGE_KEY];
-
     let result = false;
-    result = localStorage.some(function (v, i) {
-      let target = currentDomain;
-      if (v.type === 'u') {
-        target = currentUrl;
-      }
+    let index = 0;
+    let localStorage = data[1];
 
-      return v.val === target;
-    });
+    if(localStorage.list) {
+      result = localStorage.list.some((v, i) => {
+        let target = data[0][3];
+        if (v.type === 'url') {
+          target = data[0][0];
+        }
 
-    riot.mount('app', { urlExists : result });
+        index = i;
+        return v.value === target;
+      });
+    }
+
+    riot.mount('app', {exists: result, index: index, list: localStorage.list, current: data[0]});
     resolve();
   });
 
