@@ -8,6 +8,12 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
+  "content_scripts" : [
+    {
+      "js": ["build/js/content.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "permissions": [
     "tabs",
     "storage"
