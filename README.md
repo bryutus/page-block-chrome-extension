@@ -1,6 +1,4 @@
-Page Block Chrome Extension - README.md
 # Page Block - Chrome extension
-===
 ブラックリストを作成してWebページをブロックします。
 ## Description
 自分で閲覧を制限したいページを表示しないようにできます。
